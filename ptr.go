@@ -1,4 +1,4 @@
-package main
+package books
 
 // Ptr takes any type and returns a pointer to it
 func Ptr[T any](t T) *T {

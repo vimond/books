@@ -1,4 +1,4 @@
-package main
+package books
 
 // RemoveDupes removes duplicates from a slice
 func RemoveDupes[T comparable, S ~[]T](sl S) S {
