@@ -76,13 +76,6 @@ linters:
     - varcheck
     - whitespace
 
-
-run:
-  skip-dirs:
-    - test/testdata_etc
-  skip-files:
-    - internal/cache/.*_test.go
-
 issues:
     # to remove false positives on table driven testing
     # https://github.com/kyoh86/scopelint/issues/4
