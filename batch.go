@@ -2,7 +2,7 @@ package books
 
 import "math"
 
-// Batch can call the function f with batches of slice sl in sizes of batchSize
+// Batch can call the function f with batches of slice sl in sizes of batchSize.
 func Batch[D any, R any](req []D, batchSize int, f func([]D) ([]R, error)) ([]R, error) {
 	numBatches := len(req) / batchSize
 	ln := float64(len(req))

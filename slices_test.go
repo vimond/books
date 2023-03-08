@@ -36,15 +36,18 @@ func TestRemoveDupes(t *testing.T) {
 	}
 
 	for _, tc := range cases {
-		out := RemoveDupes(tc.input)
-		if len(out) != len(tc.expected) {
-			t.Fatalf("%s failed: output did not match length of expected output: (out) %+v != %+v (expected)", tc.name, out, tc.expected)
-		}
-		for i := range out {
-			if out[i] != tc.expected[i] {
-				t.Fatalf("%s failed: items in output did not match expected output: (out) %+v != %+v (expected)", tc.name, out, tc.expected)
+		t.Run(tc.name, func(t *testing.T) {
+			out := RemoveDupes(tc.input)
+			if len(out) != len(tc.expected) {
+				t.Fatalf("output did not match length of expected output: (out) %+v != %+v (expected)", out, tc.expected)
 			}
-		}
+
+			for i := range out {
+				if out[i] != tc.expected[i] {
+					t.Fatalf("items in output did not match expected output: (out) %+v != %+v (expected)", out, tc.expected)
+				}
+			}
+		})
 	}
 }
 
@@ -88,10 +91,12 @@ func TestContains(t *testing.T) {
 	}
 
 	for _, tc := range cases {
-		out := Contains(tc.inputSlice, tc.inputElement)
-		if out != tc.expected {
-			t.Fatalf("%s failed: output did not expected output: (out) %+v != %+v (expected)", tc.name, out, tc.expected)
-		}
+		t.Run(tc.name, func(t *testing.T) {
+			out := Contains(tc.inputSlice, tc.inputElement)
+			if out != tc.expected {
+				t.Fatalf("output did not expected output: (out) %+v != %+v (expected)", out, tc.expected)
+			}
+		})
 	}
 }
 
@@ -119,15 +124,18 @@ func TestReverseSlice(t *testing.T) {
 	}
 
 	for _, tc := range cases {
-		out := ReverseSlice(tc.input)
-		if len(out) != len(tc.expected) {
-			t.Fatalf("%s failed: output did not match length of expected output: (out) %+v != %+v (expected)", tc.name, out, tc.expected)
-		}
-		for i := range out {
-			if out[i] != tc.expected[i] {
-				t.Fatalf("%s failed: items in output did not match expected output: (out) %+v != %+v (expected)", tc.name, out, tc.expected)
+		t.Run(tc.name, func(t *testing.T) {
+			out := ReverseSlice(tc.input)
+			if len(out) != len(tc.expected) {
+				t.Fatalf("output did not match length of expected output: (out) %+v != %+v (expected)", out, tc.expected)
 			}
-		}
+
+			for i := range out {
+				if out[i] != tc.expected[i] {
+					t.Fatalf("items in output did not match expected output: (out) %+v != %+v (expected)", out, tc.expected)
+				}
+			}
+		})
 	}
 }
 
@@ -153,6 +161,7 @@ func TestFilterSlice(t *testing.T) {
 				if err != nil {
 					return false
 				}
+
 				return i%2 == 0
 			},
 			input:    []string{"1", "2", "6", "not an int", "5", "odd", "0", "-64", "string"},
@@ -161,22 +170,26 @@ func TestFilterSlice(t *testing.T) {
 	}
 
 	for _, tc := range cases {
-		out := FilterSlice(tc.input, tc.f)
-		if len(out) != len(tc.expected) {
-			t.Fatalf("%s failed: output did not match length of expected output: (out) %+v != %+v (expected)", tc.name, out, tc.expected)
-		}
-		for i := range out {
-			if out[i] != tc.expected[i] {
-				t.Fatalf("%s failed: items in output did not match expected output: (out) %+v != %+v (expected)", tc.name, out, tc.expected)
+		t.Run(tc.name, func(t *testing.T) {
+			out := FilterSlice(tc.input, tc.f)
+			if len(out) != len(tc.expected) {
+				t.Fatalf("output did not match length of expected output: (out) %+v != %+v (expected)", out, tc.expected)
 			}
-		}
+
+			for i := range out {
+				if out[i] != tc.expected[i] {
+					t.Fatalf("items in output did not match expected output: (out) %+v != %+v (expected)", out, tc.expected)
+				}
+			}
+		})
 	}
 }
 
-// nolint:gosec // this function is only used for testing and does not require cryptographic security
+//nolint:gosec // this function is only used for testing and does not require cryptographic security
 func BenchmarkEqualSlices(b *testing.B) {
 	sl1 := make([]int, 100)
 	sl2 := make([]int, 100)
+
 	for i := 0; i < 100; i++ {
 		sl1[i] = rand.Intn(1000000)
 		sl2[i] = rand.Intn(1000000)
@@ -187,10 +200,11 @@ func BenchmarkEqualSlices(b *testing.B) {
 	}
 }
 
-// nolint:gosec // this function is only used for testing and does not require cryptographic security
+//nolint:gosec // this function is only used for testing and does not require cryptographic security
 func BenchmarkDeepEqualSlices(b *testing.B) {
 	sl1 := make([]int, 100)
 	sl2 := make([]int, 100)
+
 	for i := 0; i < 100; i++ {
 		sl1[i] = rand.Intn(1000000)
 		sl2[i] = rand.Intn(1000000)

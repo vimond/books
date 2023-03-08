@@ -1,6 +1,6 @@
 package books
 
-// RemoveDupes removes duplicates from a slice, order is preserved
+// RemoveDupes removes duplicates from a slice, order is preserved.
 func RemoveDupes[T comparable, S ~[]T](s S) S {
 	m := make(map[T]struct{})
 	idx := 0
@@ -17,7 +17,7 @@ func RemoveDupes[T comparable, S ~[]T](s S) S {
 	return s[:idx]
 }
 
-// ReverseSlice reverses the order of the elements in the array passed
+// ReverseSlice reverses the order of the elements in the array passed.
 func ReverseSlice[T any, S ~[]T](s S) S {
 	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
 		s[i], s[j] = s[j], s[i]
@@ -26,7 +26,7 @@ func ReverseSlice[T any, S ~[]T](s S) S {
 	return s
 }
 
-// Contains checks if the slice contains the given element
+// Contains checks if the slice contains the given element.
 func Contains[T comparable, S ~[]T](s S, e T) bool {
 	for i := range s {
 		if e == s[i] {
@@ -37,8 +37,8 @@ func Contains[T comparable, S ~[]T](s S, e T) bool {
 	return false
 }
 
-// Filter filters a slice by passed function.
-// The passed function should return true to keep item, and false to remove it
+// FilterSlice filters a slice by passed function.
+// The passed function should return true to keep item, and false to remove it.
 func FilterSlice[T any, S ~[]T](s S, f func(T) bool) S {
 	idx := 0
 
@@ -53,7 +53,7 @@ func FilterSlice[T any, S ~[]T](s S, f func(T) bool) S {
 }
 
 // EqualSlices checks if two slices of comparable types are equal.
-// From personal testing, this seems to be faster than reflect.DeepEqual(), but this has not been tested thoroughly
+// From personal testing, this seems to be faster than reflect.DeepEqual(), but this has not been tested thoroughly.
 func EqualSlices[T comparable, S ~[]T](s1, s2 S) bool {
 	if len(s1) != len(s2) {
 		return false

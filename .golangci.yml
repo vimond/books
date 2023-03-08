@@ -45,40 +45,70 @@ linters:
   # inverted configuration with `enable-all` and `disable` is not scalable during updates of golangci-lint
   disable-all: true
   enable:
+    - bidichk
     - bodyclose
-    # - deadcode
+    - contextcheck
     - depguard
     - dogsled
     - dupl
+    - durationcheck
     - errcheck
+    - errchkjson
+    - errname
+    - errorlint
+    - exhaustruct
+    - exportloopref
+    - forbidigo
     - funlen
+    - gci
+    - gochecknoglobals
     - gochecknoinits
+    - gocognit
     - goconst
-    # - gocritic
+    - gocritic
+    - godot
     - gocyclo
+    - goerr113
     - gofmt
     - goimports
-    - golint
+    - gomnd
     - gosec
     - gosimple
     - govet
+    - grouper
+    - importas
     - ineffassign
+    - interfacebloat
     - interfacer
+    # - ireturn # A lot of the functions of the library need to return variables of a generic type
     - misspell
     - nakedret
+    - nestif
+    - nilerr
+    - nilnil
+    - nlreturn
+    - noctx
+    - nolintlint
+    - prealloc
+    - predeclared
+    - revive
+    - rowserrcheck
+    - sqlclosecheck
     - staticcheck
     - structcheck
     - stylecheck
+    - tenv
     - typecheck
     - unconvert
     - unparam
+    - usestdlibvars
     - unused
     - varcheck
+    - wastedassign
     - whitespace
+    - wrapcheck
+    - wsl
 
 issues:
-    # to remove false positives on table driven testing
-    # https://github.com/kyoh86/scopelint/issues/4
   exclude:
-     - Using the variable on range scope `tc` in function literal
      - Declaration of "err" shadows declaration at line 
