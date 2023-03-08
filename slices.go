@@ -37,7 +37,7 @@ func Contains[T comparable, S ~[]T](s S, e T) bool {
 	return false
 }
 
-// Filter filters a slice by passed function
+// Filter filters a slice by passed function.
 // The passed function should return true to keep item, and false to remove it
 func FilterSlice[T any, S ~[]T](s S, f func(T) bool) S {
 	idx := 0
@@ -52,7 +52,8 @@ func FilterSlice[T any, S ~[]T](s S, f func(T) bool) S {
 	return s[:idx]
 }
 
-// EqualSlices checks if two slices of comparable types are equal
+// EqualSlices checks if two slices of comparable types are equal.
+// From personal testing, this seems to be faster than reflect.DeepEqual(), but this has not been tested thoroughly
 func EqualSlices[T comparable, S ~[]T](s1, s2 S) bool {
 	if len(s1) != len(s2) {
 		return false
