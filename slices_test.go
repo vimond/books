@@ -187,6 +187,56 @@ func TestFilterSlice(t *testing.T) {
 	}
 }
 
+func TestEqualSlices(t *testing.T) {
+	cases := []struct {
+		name           string
+		inputs         [2][]string
+		expectedOutput bool
+	}{
+		{
+			name: "Equal strings",
+			inputs: [2][]string{
+				{"Input1"},
+				{"Input1"},
+			},
+			expectedOutput: true,
+		},
+		{
+			name: "Three equal strings",
+			inputs: [2][]string{
+				{"Input1", "Input2", "Input3"},
+				{"Input1", "Input2", "Input3"},
+			},
+			expectedOutput: true,
+		},
+		{
+			name: "Different strings, equal length",
+			inputs: [2][]string{
+				{"Input1", "Input2"},
+				{"Input1", "This one is different!"},
+			},
+			expectedOutput: false,
+		},
+		{
+			name: "Unequal lengths",
+			inputs: [2][]string{
+				{"Input1", "Input2"},
+				{"This only has one!"},
+			},
+			expectedOutput: false,
+		},
+	}
+
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			output := books.EqualSlices(tc.inputs[0], tc.inputs[1])
+			if output != tc.expectedOutput {
+				t.Fatalf("output did not match deep equal output: %t != %t", tc.expectedOutput, output)
+			}
+		})
+	}
+}
+
 //nolint:gosec // this function is only used for testing and does not require cryptographic security
 func BenchmarkEqualSlices(b *testing.B) {
 	sl1 := make([]int, 100)
