@@ -1,10 +1,12 @@
-package books
+package books_test
 
 import (
 	"math/rand"
 	"reflect"
 	"strconv"
 	"testing"
+
+	"github.com/vimond/books"
 )
 
 func TestRemoveDupes(t *testing.T) {
@@ -37,7 +39,7 @@ func TestRemoveDupes(t *testing.T) {
 
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
-			out := RemoveDupes(tc.input)
+			out := books.RemoveDupes(tc.input)
 			if len(out) != len(tc.expected) {
 				t.Fatalf("output did not match length of expected output: (out) %+v != %+v (expected)", out, tc.expected)
 			}
@@ -92,7 +94,7 @@ func TestContains(t *testing.T) {
 
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
-			out := Contains(tc.inputSlice, tc.inputElement)
+			out := books.Contains(tc.inputSlice, tc.inputElement)
 			if out != tc.expected {
 				t.Fatalf("output did not expected output: (out) %+v != %+v (expected)", out, tc.expected)
 			}
@@ -125,7 +127,7 @@ func TestReverseSlice(t *testing.T) {
 
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
-			out := ReverseSlice(tc.input)
+			out := books.ReverseSlice(tc.input)
 			if len(out) != len(tc.expected) {
 				t.Fatalf("output did not match length of expected output: (out) %+v != %+v (expected)", out, tc.expected)
 			}
@@ -171,7 +173,7 @@ func TestFilterSlice(t *testing.T) {
 
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
-			out := FilterSlice(tc.input, tc.f)
+			out := books.FilterSlice(tc.input, tc.f)
 			if len(out) != len(tc.expected) {
 				t.Fatalf("output did not match length of expected output: (out) %+v != %+v (expected)", out, tc.expected)
 			}
@@ -196,7 +198,7 @@ func BenchmarkEqualSlices(b *testing.B) {
 	}
 
 	for i := 0; i < b.N; i++ {
-		EqualSlices(sl1, sl2)
+		books.EqualSlices(sl1, sl2)
 	}
 }
 
