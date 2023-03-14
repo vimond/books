@@ -7,13 +7,13 @@ import (
 	"github.com/vimond/books"
 )
 
-var (
-	errEmptyInput   = errors.New("empty input")
-	errInvalidInput = errors.New("invalid input")
-)
-
 //nolint:funlen,gocognit // It doesn't make much sense to split up
 func TestBatch(t *testing.T) {
+	var (
+		errEmptyInput   = errors.New("empty input")   //nolint:goerr113 // this is only needed for this test
+		errInvalidInput = errors.New("invalid input") //nolint:goerr113 // this is only needed for this test
+	)
+
 	cases := []struct {
 		name           string
 		input          []int
