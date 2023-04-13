@@ -102,6 +102,7 @@ func TestClamp(t *testing.T) {
 		t.Fatalf("unexpected output when passing floats")
 	}
 
+	// string is between min and max
 	xStr, minStr, maxStr := "bbb", "aaa", "yyy"
 	outputStr := books.Clamp(xStr, minStr, maxStr)
 
